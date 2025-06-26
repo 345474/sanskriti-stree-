@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin - Sanskriti Stree</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: sans-serif; background: #fff7f0; padding: 20px; }
+    h2 { color: #8B0000; }
+    input, textarea, button {
+      width: 100%; margin-top: 10px; padding: 10px;
+      border: 1px solid #ccc; border-radius: 6px;
+    }
+    button { background: #8B0000; color: white; border: none; }
+    textarea { height: 120px; }
+  </style>
+</head>
+<body>
+  <h2>🛍️ Product Generator (Admin Only)</h2>
+  <input type="text" id="name" placeholder="Product Name" required>
+  <input type="text" id="price" placeholder="Price ₹" required>
+  <input type="text" id="img" placeholder="Image URL" required>
+  <button onclick="generate()">Generate Code</button>
+  <textarea id="result" placeholder="Product code will appear here..."></textarea>
+  <script>
+    function generate() {
+      const name = document.getElementById('name').value;
+      const price = document.getElementById('price').value;
+      const img = document.getElementById('img').value;
+      const text = `
+<div class="card">
+  <img src="${img}" alt="${name}">
+  <h3>${name}</h3>
+  <p>₹${price}</p>
+  <a class="buy-btn" href="https://wa.me/?text=I want to buy ${name} for ₹${price}" target="_blank">Buy Now</a>
+</div>`;
+      document.getElementById('result').value = text;
+      navigator.clipboard.writeText(text);
+      alert('✅ Product code copied. Paste into index.html');
+    }
+  </script>
+</body>
+</html>
